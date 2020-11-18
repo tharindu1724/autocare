@@ -1,5 +1,7 @@
 package lk.sampath.autocare.asset.employee.entity;
 
+
+
 import lk.sampath.autocare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

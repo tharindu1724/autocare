@@ -1,8 +1,9 @@
 package lk.sampath.autocare.asset.userManagement.controller;
 
+
 import lk.sampath.autocare.asset.employee.entity.Employee;
-import lk.sampath.autocare.asset.employee.entity.Enum.Designation;
-import lk.sampath.autocare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.sampath.autocare.asset.employee.entity.enums.Designation;
+import lk.sampath.autocare.asset.employee.entity.enums.EmployeeStatus;
 import lk.sampath.autocare.asset.employee.service.EmployeeService;
 import lk.sampath.autocare.asset.userManagement.entity.User;
 import lk.sampath.autocare.asset.userManagement.service.RoleService;
@@ -13,10 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 

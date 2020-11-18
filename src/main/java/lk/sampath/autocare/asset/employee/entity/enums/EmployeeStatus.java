@@ -1,4 +1,4 @@
-package lk.sampath.autocare.asset.employee.entity.Enum;
+package lk.sampath.autocare.asset.employee.entity.enums;
 
 public enum EmployeeStatus {
     WORKING("Working"),

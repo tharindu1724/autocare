@@ -1,5 +1,7 @@
 package lk.sampath.autocare.asset.employee.service;
 
+
+
 import lk.sampath.autocare.asset.employee.dao.EmployeeDao;
 import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.util.interfaces.AbstractService;
@@ -15,7 +17,7 @@ import java.util.List;
 @Service
 // spring transactional annotation need to tell spring to this method work through the project
 @CacheConfig( cacheNames = "employee" )
-public class EmployeeService implements AbstractService<Employee, Integer > {
+public class EmployeeService implements AbstractService< Employee, Integer > {
 
     private final EmployeeDao employeeDao;
 
