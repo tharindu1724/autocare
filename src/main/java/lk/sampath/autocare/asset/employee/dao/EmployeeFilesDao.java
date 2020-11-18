@@ -1,5 +1,7 @@
 package lk.sampath.autocare.asset.employee.dao;
 
+
+
 import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.asset.employee.entity.EmployeeFiles;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeFilesDao extends JpaRepository<EmployeeFiles, Integer > {
+public interface EmployeeFilesDao extends JpaRepository< EmployeeFiles, Integer > {
     List< EmployeeFiles > findByEmployeeOrderByIdDesc(Employee employee);
 
     EmployeeFiles findByName(String filename);
@@ -16,4 +18,6 @@ public interface EmployeeFilesDao extends JpaRepository<EmployeeFiles, Integer >
     EmployeeFiles findByNewName(String filename);
 
     EmployeeFiles findByNewId(String filename);
+
+    EmployeeFiles findByEmployee(Employee employee);
 }

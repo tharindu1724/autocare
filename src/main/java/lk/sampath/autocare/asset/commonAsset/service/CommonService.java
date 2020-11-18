@@ -1,12 +1,13 @@
 package lk.sampath.autocare.asset.commonAsset.service;
 
+
 import lk.sampath.autocare.asset.commonAsset.model.Enum.BloodGroup;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.CivilStatus;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.Gender;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.Title;
 import lk.sampath.autocare.asset.employee.controller.EmployeeRestController;
-import lk.sampath.autocare.asset.employee.entity.Enum.Designation;
-import lk.sampath.autocare.asset.employee.entity.Enum.EmployeeStatus;
+import lk.sampath.autocare.asset.employee.entity.enums.Designation;
+import lk.sampath.autocare.asset.employee.entity.enums.EmployeeStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;

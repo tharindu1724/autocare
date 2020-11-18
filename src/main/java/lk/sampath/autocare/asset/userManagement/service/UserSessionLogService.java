@@ -1,5 +1,6 @@
 package lk.sampath.autocare.asset.userManagement.service;
 
+
 import lk.sampath.autocare.asset.userManagement.dao.UserSessionLogDao;
 import lk.sampath.autocare.asset.userManagement.entity.Enum.UserSessionLogStatus;
 import lk.sampath.autocare.asset.userManagement.entity.User;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Service
 @CacheConfig( cacheNames = {"userSessionLog"} )
-public class UserSessionLogService implements AbstractService<UserSessionLog, Integer > {
+public class UserSessionLogService implements AbstractService< UserSessionLog, Integer > {
     private final UserSessionLogDao userSessionLogDao;
 
     @Autowired
