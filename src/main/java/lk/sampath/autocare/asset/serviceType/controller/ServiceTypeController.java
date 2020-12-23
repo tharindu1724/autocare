@@ -28,7 +28,9 @@ public class ServiceTypeController {
     private String commonThing(Model model, Boolean booleanValue, ServiceType serviceType) {
         model.addAttribute("addStatus", booleanValue);
         model.addAttribute("serviceType", serviceType);
-        model.addAttribute("serviceTypeParameters", serviceTypeParameterService.findAll());
+        model.addAttribute("serviceTypeParameters", serviceTypeParameterService.findAll() .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "serviceType/addServiceType";
     }
 
