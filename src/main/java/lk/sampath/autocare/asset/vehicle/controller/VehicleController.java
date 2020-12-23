@@ -1,6 +1,7 @@
 package lk.sampath.autocare.asset.vehicle.controller;
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.customer.service.CustomerService;
 import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import lk.sampath.autocare.asset.vehicle.entity.Vehicle;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/vehicle" )
@@ -32,7 +34,10 @@ public class VehicleController implements AbstractController< Vehicle, Integer >
 
     @GetMapping
     public String findAll(Model model) {
-        model.addAttribute("vehicles", vehicleService.findAll());
+        model.addAttribute("vehicles", vehicleService.findAll()
+            .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "vehicle/vehicle";
     }
 

@@ -1,6 +1,7 @@
 package lk.sampath.autocare.asset.serviceType.controller;
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.serviceType.entity.ServiceType;
 import lk.sampath.autocare.asset.serviceType.service.ServiceTypeService;
 import lk.sampath.autocare.asset.serviceTypeParameter.service.ServiceTypeParameterService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/serviceType")
@@ -33,7 +35,10 @@ public class ServiceTypeController {
 
     @GetMapping
     public String findAll(Model model) {
-        model.addAttribute("serviceTypes", serviceTypeService.findAll());
+        model.addAttribute("serviceTypes", serviceTypeService.findAll()
+            .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "serviceType/serviceType";
     }
 

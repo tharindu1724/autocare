@@ -1,6 +1,8 @@
 package lk.sampath.autocare.asset.vehicle.service;
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
+import lk.sampath.autocare.asset.customer.entity.Customer;
 import lk.sampath.autocare.asset.vehicle.dao.VehicleDao;
 import lk.sampath.autocare.asset.vehicle.entity.Vehicle;
 import lk.sampath.autocare.util.interfaces.AbstractService;
@@ -27,11 +29,16 @@ public class VehicleService implements AbstractService< Vehicle, Integer> {
     }
 
     public Vehicle persist(Vehicle vehicle) {
+        if ( vehicle.getId() == null ) {
+            vehicle.setLiveDead(LiveDead.ACTIVE);
+        }
         return vehicleDao.save(vehicle);
     }
 
     public boolean delete(Integer id) {
-        vehicleDao.deleteById(id);
+        Vehicle customer = vehicleDao.getOne(id);
+        customer.setLiveDead(LiveDead.STOP);
+        vehicleDao.save(customer);
         return false;
     }
 
