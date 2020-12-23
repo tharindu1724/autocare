@@ -1,6 +1,5 @@
 package lk.sampath.autocare;
 
-import lk.sampath.autocare.asset.commonAsset.model.Enum.BloodGroup;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.CivilStatus;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.Gender;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.Title;
@@ -8,10 +7,10 @@ import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.asset.employee.entity.enums.Designation;
 import lk.sampath.autocare.asset.employee.entity.enums.EmployeeStatus;
 import lk.sampath.autocare.asset.employee.service.EmployeeService;
-import lk.sampath.autocare.asset.userManagement.entity.Role;
-import lk.sampath.autocare.asset.userManagement.entity.User;
-import lk.sampath.autocare.asset.userManagement.service.RoleService;
-import lk.sampath.autocare.asset.userManagement.service.UserService;
+import lk.sampath.autocare.asset.role.entity.Role;
+import lk.sampath.autocare.asset.user.entity.User;
+import lk.sampath.autocare.asset.role.service.RoleService;
+import lk.sampath.autocare.asset.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +51,7 @@ public class ApplicationCreateRestController {
         employee.setMobileOne("0750000000");
         employee.setTitle(Title.DR);
         employee.setGender(Gender.MALE);
-        employee.setDesignation(Designation.CA);
+        employee.setDesignation(Designation.CASHIER);
         employee.setCivilStatus(CivilStatus.UNMARRIED);
         employee.setEmployeeStatus(EmployeeStatus.WORKING);
         employee.setDateOfBirth(LocalDate.now().minusYears(18));

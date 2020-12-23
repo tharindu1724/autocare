@@ -2,6 +2,7 @@ package lk.sampath.autocare.asset.serviceType.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.serviceTypeParameter.entity.ServiceTypeParameter;
 import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import lk.sampath.autocare.util.audit.AuditEntity;
@@ -28,6 +29,9 @@ public class ServiceType extends AuditEntity {
 
     @Enumerated(EnumType.STRING)
     private VehicleModel vehicleModel;
+
+    @Enumerated( EnumType.STRING)
+    private LiveDead liveDead;
 
 
     @ManyToMany

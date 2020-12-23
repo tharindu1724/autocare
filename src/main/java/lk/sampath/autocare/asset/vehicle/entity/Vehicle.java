@@ -1,12 +1,15 @@
 package lk.sampath.autocare.asset.vehicle.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.customer.entity.Customer;
+import lk.sampath.autocare.asset.service_type_parameter_vehicle.entity.ServiceTypeParameterVehicle;
 import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import lk.sampath.autocare.util.audit.AuditEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -34,8 +37,15 @@ public class Vehicle extends AuditEntity {
     private String gearNumber;
 
     @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
+    @Enumerated(EnumType.STRING)
     private VehicleModel vehicleModel;//van car or ...
 
     @ManyToOne
     private Customer customer;
+
+    @OneToMany(mappedBy = "vehicle")
+    private List< ServiceTypeParameterVehicle > serviceTypeParameterVehicles;
+
 }

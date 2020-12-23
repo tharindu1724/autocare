@@ -1,5 +1,6 @@
 package lk.sampath.autocare.asset.userManagement.entity;
 
+import lk.sampath.autocare.asset.user.entity.User;
 import lk.sampath.autocare.asset.userManagement.entity.Enum.UserSessionLogStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

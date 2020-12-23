@@ -2,6 +2,7 @@ package lk.sampath.autocare.asset.customer.controller;
 
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.Title;
 import lk.sampath.autocare.asset.customer.entity.Customer;
 import lk.sampath.autocare.asset.customer.service.CustomerService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/customer")
@@ -42,7 +45,10 @@ public class CustomerController  {
 
     @GetMapping
     public String findAll(Model model) {
-        model.addAttribute("customers", customerService.findAll());
+        model.addAttribute("customers", customerService.findAll()
+            .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "customer/customer";
     }
 

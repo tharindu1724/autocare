@@ -3,6 +3,7 @@ package lk.sampath.autocare.asset.serviceTypeParameter.controller;
 
 import lk.sampath.autocare.asset.serviceTypeParameter.entity.ServiceTypeParameter;
 import lk.sampath.autocare.asset.serviceTypeParameter.service.ServiceTypeParameterService;
+import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,7 @@ public class ServiceTypeParameterController {
     private String commonThing(Model model, Boolean booleanValue, ServiceTypeParameter serviceTypeParameter) {
         model.addAttribute("addStatus", booleanValue);
         model.addAttribute("serviceTypeParameter", serviceTypeParameter);
+        model.addAttribute("vehicleModels", VehicleModel.values());
         return "serviceTypeParameter/addServiceTypeParameter";
     }
 

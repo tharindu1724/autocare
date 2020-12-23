@@ -1,13 +1,13 @@
-package lk.sampath.autocare.asset.userManagement.controller;
+package lk.sampath.autocare.asset.user.controller;
 
 
 import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.asset.employee.entity.enums.Designation;
 import lk.sampath.autocare.asset.employee.entity.enums.EmployeeStatus;
 import lk.sampath.autocare.asset.employee.service.EmployeeService;
-import lk.sampath.autocare.asset.userManagement.entity.User;
-import lk.sampath.autocare.asset.userManagement.service.RoleService;
-import lk.sampath.autocare.asset.userManagement.service.UserService;
+import lk.sampath.autocare.asset.user.entity.User;
+import lk.sampath.autocare.asset.role.service.RoleService;
+import lk.sampath.autocare.asset.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

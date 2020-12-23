@@ -1,9 +1,11 @@
 package lk.sampath.autocare.asset.serviceType.controller;
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.serviceType.entity.ServiceType;
 import lk.sampath.autocare.asset.serviceType.service.ServiceTypeService;
 import lk.sampath.autocare.asset.serviceTypeParameter.service.ServiceTypeParameterService;
+import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/serviceType")
@@ -26,14 +29,20 @@ public class ServiceTypeController {
     private String commonThing(Model model, Boolean booleanValue, ServiceType serviceType) {
         model.addAttribute("addStatus", booleanValue);
         model.addAttribute("serviceType", serviceType);
-        model.addAttribute("serviceTypeParameters", serviceTypeParameterService.findAll());
+        model.addAttribute("vehicleModels", VehicleModel.values());
+        model.addAttribute("serviceTypeParameters", serviceTypeParameterService.findAll() .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "serviceType/addServiceType";
     }
 
 
     @GetMapping
     public String findAll(Model model) {
-        model.addAttribute("serviceTypes", serviceTypeService.findAll());
+        model.addAttribute("serviceTypes", serviceTypeService.findAll()
+            .stream()
+            .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+            .collect(Collectors.toList()));
         return "serviceType/serviceType";
     }
 

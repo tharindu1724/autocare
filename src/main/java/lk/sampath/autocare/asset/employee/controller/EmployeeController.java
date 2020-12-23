@@ -1,10 +1,8 @@
 package lk.sampath.autocare.asset.employee.controller;
 
 
-import lk.sampath.autocare.asset.commonAsset.model.Enum.BloodGroup;
-import lk.sampath.autocare.asset.commonAsset.model.Enum.CivilStatus;
-import lk.sampath.autocare.asset.commonAsset.model.Enum.Gender;
-import lk.sampath.autocare.asset.commonAsset.model.Enum.Title;
+
+import lk.sampath.autocare.asset.commonAsset.model.Enum.*;
 import lk.sampath.autocare.asset.commonAsset.service.CommonService;
 import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.asset.employee.entity.EmployeeFiles;
@@ -12,9 +10,10 @@ import lk.sampath.autocare.asset.employee.entity.enums.Designation;
 import lk.sampath.autocare.asset.employee.entity.enums.EmployeeStatus;
 import lk.sampath.autocare.asset.employee.service.EmployeeFilesService;
 import lk.sampath.autocare.asset.employee.service.EmployeeService;
-import lk.sampath.autocare.asset.userManagement.entity.User;
-import lk.sampath.autocare.asset.userManagement.service.UserService;
+import lk.sampath.autocare.asset.user.entity.User;
+import lk.sampath.autocare.asset.user.service.UserService;
 import lk.sampath.autocare.util.service.DateTimeAgeService;
+import lk.sampath.autocare.util.service.MakeAutoGenerateNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +27,9 @@ import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping( "/employee" )
@@ -37,20 +38,22 @@ public class EmployeeController {
   private final EmployeeFilesService employeeFilesService;
   private final DateTimeAgeService dateTimeAgeService;
   private final CommonService commonService;
-
   private final UserService userService;
+
+  private final MakeAutoGenerateNumberService makeAutoGenerateNumberService;
 
   @Autowired
   public EmployeeController(EmployeeService employeeService, EmployeeFilesService employeeFilesService,
                             DateTimeAgeService dateTimeAgeService,
-                            CommonService commonService, UserService userService) {
+                            CommonService commonService, UserService userService,
+                            MakeAutoGenerateNumberService makeAutoGenerateNumberService) {
     this.employeeService = employeeService;
     this.employeeFilesService = employeeFilesService;
     this.dateTimeAgeService = dateTimeAgeService;
     this.commonService = commonService;
     this.userService = userService;
+    this.makeAutoGenerateNumberService = makeAutoGenerateNumberService;
   }
-//----> Employee details management - start <----//
 
   // Common things for an employee add and update
   private String commonThings(Model model) {
@@ -75,15 +78,19 @@ public class EmployeeController {
   //Send all employee data
   @RequestMapping
   public String employeePage(Model model) {
+    System.out.println(" im in");
     List< Employee > employees = new ArrayList<>();
-    for ( Employee employee : employeeService.findAll() ) {
+    for ( Employee employee : employeeService.findAll()
+        .stream()
+        .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
+        .collect(Collectors.toList())
+    ) {
       employee.setFileInfo(employeeFilesService.employeeFileDownloadLinks(employee));
       employees.add(employee);
     }
-    /*  Employee employee = employeeService.findById(id);*/
+    System.out.println("dfsdfs "+employees.size());
     model.addAttribute("employees", employees);
     model.addAttribute("contendHeader", "Employee");
-//        /* model.addAttribute("files", employeeFilesService.employeeFileDownloadLinks(employee));*/
     return "employee/employee";
   }
 
@@ -122,33 +129,42 @@ public class EmployeeController {
   @PostMapping( value = {"/save", "/update"} )
   public String addEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model
                            ) {
-    System.out.println("came employee" + employee.toString());
     if ( result.hasErrors() ) {
       model.addAttribute("addStatus", true);
       model.addAttribute("employee", employee);
       return commonThings(model);
     }
-    try {
-      employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
-      employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
-      employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
-      // System.out.println("dependent length " + employee.getDependents().size());
 
+    employee.setMobileOne(commonService.commonMobileNumberLengthValidator(employee.getMobileOne()));
+    employee.setMobileTwo(commonService.commonMobileNumberLengthValidator(employee.getMobileTwo()));
+    employee.setLand(commonService.commonMobileNumberLengthValidator(employee.getLand()));
 
-      //after save employee files and save employee
-      Employee employeeSaved = employeeService.persist(employee);
-      //if employee state is not working he or she cannot access to the system
-      if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
-        User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
-        //if employee not a user
-        if ( user != null ) {
-          user.setEnabled(false);
-          userService.persist(user);
-        }
+    if ( employee.getId() == null ) {
+      Employee lastEmployee = employeeService.lastEmployee();
+      if ( lastEmployee.getCode() == null ) {
+        employee.setCode("SSME" + makeAutoGenerateNumberService.numberAutoGen(null).toString());
+      } else {
+        employee.setCode("SSME" + makeAutoGenerateNumberService.numberAutoGen(lastEmployee.getCode().substring(4)).toString());
       }
+    }
+
+
+    //after save employee files and save employee
+    Employee employeeSaved = employeeService.persist(employee);
+    //if employee state is not working he or she cannot access to the system
+    if ( !employee.getEmployeeStatus().equals(EmployeeStatus.WORKING) ) {
+      User user = userService.findUserByEmployee(employeeService.findByNic(employee.getNic()));
+      //if employee not a user
+      if ( user != null ) {
+        user.setEnabled(false);
+        userService.persist(user);
+      }
+    }
+
+    try {
       //save employee images file
-      if ( employee.getFile().getOriginalFilename() != null ) {
-        EmployeeFiles employeeFiles = employeeFilesService.findByName(employee.getFile().getOriginalFilename());
+      if ( employee.getFile().getOriginalFilename() != null && !Objects.requireNonNull(employee.getFile().getContentType()).equals("application/octet-stream")) {
+        EmployeeFiles employeeFiles = employeeFilesService.findByEmployee(employeeSaved);
         if ( employeeFiles != null ) {
           // update new contents
           employeeFiles.setPic(employee.getFile().getBytes());
@@ -163,7 +179,6 @@ public class EmployeeController {
         }
         employeeFilesService.persist(employeeFiles);
       }
-      employee = employeeSaved;
       return "redirect:/employee";
 
     } catch ( Exception e ) {

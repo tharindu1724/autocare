@@ -1,6 +1,7 @@
-package lk.sampath.autocare.asset.userManagement.entity;
+package lk.sampath.autocare.asset.role.entity;
 
 
+import lk.sampath.autocare.asset.user.entity.User;
 import lk.sampath.autocare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

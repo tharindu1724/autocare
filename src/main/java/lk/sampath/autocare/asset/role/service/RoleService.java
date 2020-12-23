@@ -1,8 +1,8 @@
-package lk.sampath.autocare.asset.userManagement.service;
+package lk.sampath.autocare.asset.role.service;
 
 
-import lk.sampath.autocare.asset.userManagement.dao.RoleDao;
-import lk.sampath.autocare.asset.userManagement.entity.Role;
+import lk.sampath.autocare.asset.role.dao.RoleDao;
+import lk.sampath.autocare.asset.role.entity.Role;
 import lk.sampath.autocare.util.interfaces.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;

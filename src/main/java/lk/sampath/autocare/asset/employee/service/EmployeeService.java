@@ -2,6 +2,7 @@ package lk.sampath.autocare.asset.employee.service;
 
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.employee.dao.EmployeeDao;
 import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.util.interfaces.AbstractService;
@@ -40,15 +41,23 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
             put = {@CachePut( value = "employee", key = "#employee.id" )} )
     @Transactional
     public Employee persist(Employee employee) {
+        if(employee.getId()==null){
+            employee.setLiveDead(LiveDead.ACTIVE);}
         return employeeDao.save(employee);
     }
 
-    @CacheEvict( allEntries = true )
+    public boolean delete(Integer id) {
+        Employee employee =  employeeDao.getOne(id);
+        employee.setLiveDead(LiveDead.STOP);
+        employeeDao.save(employee);
+        return false;
+    }
+   /* @CacheEvict( allEntries = true )
     public boolean delete(Integer id) {
         employeeDao.deleteById(id);
         return false;
     }
-
+*/
     @Cacheable
     public List< Employee > search(Employee employee) {
         ExampleMatcher matcher = ExampleMatcher
@@ -72,4 +81,6 @@ public class EmployeeService implements AbstractService< Employee, Integer > {
     public Employee findByNic(String nic) {
         return employeeDao.findByNic(nic);
     }
+
+
 }

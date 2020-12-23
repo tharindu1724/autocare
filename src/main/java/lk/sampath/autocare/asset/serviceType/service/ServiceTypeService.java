@@ -3,6 +3,8 @@ package lk.sampath.autocare.asset.serviceType.service;
 
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
+import lk.sampath.autocare.asset.customer.entity.Customer;
 import lk.sampath.autocare.asset.serviceType.dao.ServiceTypeDao;
 import lk.sampath.autocare.asset.serviceType.entity.ServiceType;
 import lk.sampath.autocare.util.interfaces.AbstractService;
@@ -29,12 +31,17 @@ public class ServiceTypeService implements AbstractService< ServiceType, Integer
     }
 
     public ServiceType persist(ServiceType serviceType) {
+        if ( serviceType.getId() == null ) {
+            serviceType.setLiveDead(LiveDead.ACTIVE);
+        }
         return serviceTypeDao.save(serviceType);
     }
 
     public boolean delete(Integer id) {
-        serviceTypeDao.deleteById(id);
-        return true;
+        ServiceType serviceType = serviceTypeDao.getOne(id);
+        serviceType.setLiveDead(LiveDead.STOP);
+        serviceTypeDao.save(serviceType);
+        return false;
     }
 
     public List<ServiceType> search(ServiceType serviceType) {

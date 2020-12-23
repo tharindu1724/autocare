@@ -1,6 +1,8 @@
 package lk.sampath.autocare.asset.serviceTypeParameter.service;
 
 
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
+import lk.sampath.autocare.asset.serviceType.entity.ServiceType;
 import lk.sampath.autocare.asset.serviceTypeParameter.dao.ServiceTypeParameterDao;
 import lk.sampath.autocare.asset.serviceTypeParameter.entity.ServiceTypeParameter;
 import lk.sampath.autocare.util.interfaces.AbstractService;
@@ -27,11 +29,16 @@ private final ServiceTypeParameterDao serviceTypeParameterDao;
     }
 
     public ServiceTypeParameter persist(ServiceTypeParameter serviceTypeParameter) {
+        if ( serviceTypeParameter.getId() == null ) {
+            serviceTypeParameter.setLiveDead(LiveDead.ACTIVE);
+        }
         return serviceTypeParameterDao.save(serviceTypeParameter);
     }
 
     public boolean delete(Integer id) {
-        serviceTypeParameterDao.deleteById(id);
+        ServiceTypeParameter serviceTypeParameter = serviceTypeParameterDao.getOne(id);
+        serviceTypeParameter.setLiveDead(LiveDead.STOP);
+        serviceTypeParameterDao.save(serviceTypeParameter);
         return true;
     }
 

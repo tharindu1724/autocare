@@ -1,7 +1,7 @@
-package lk.sampath.autocare.asset.userManagement.dao;
+package lk.sampath.autocare.asset.role.dao;
 
 
-import lk.sampath.autocare.asset.userManagement.entity.Role;
+import lk.sampath.autocare.asset.role.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

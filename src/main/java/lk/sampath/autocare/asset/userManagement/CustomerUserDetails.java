@@ -1,7 +1,7 @@
 package lk.sampath.autocare.asset.userManagement;
 
 
-import lk.sampath.autocare.asset.userManagement.entity.User;
+import lk.sampath.autocare.asset.user.entity.User;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
