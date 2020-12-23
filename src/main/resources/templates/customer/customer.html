@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: headerFragment}">
+    <link th:href="@{/css/customerCss.css}" media="all" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
     <title>customer</title>
 </head>
@@ -10,26 +11,49 @@
 <div class="container-fluid  form-Border">
     <div class="row text-center formManagement border-info">
         <!--New Customer Button-->
-        <div class="col">
-            <a class="btn btn-success" href="/customer/add" tabindex="1">
-                <i class="fas fa-plus" style="font-size: 20px"></i>&nbsp;&nbsp;New
+        <div class="col text-left">
+            <a href="/home" id="btnHome" class="btn" tabindex="">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <i class="fas fa-home" style="font-size: 20px"></i>&nbsp;&nbsp;
+                Home
             </a>
         </div>
         <!--List Name-->
-        <div class="col">
+        <!--<div class="col">
             <h2 class="text-white text-center">
                 <strong>
                     Customer List
                 </strong>
             </h2>
-        </div>
+        </div>-->
         <!--Home Button-->
-        <div class="col">
-            <a href="/home" id="searchShow" class="btn btn-primary" tabindex="2">
-                <!--<i class="fa fa-user " style="font-size: 20px"></i>&nbsp;Add&nbsp;-->
-                <i class="fas fa-home" style="font-size: 20px"></i>&nbsp;&nbsp;Home
+        <div class="col text-right">
+
+            <a class="btn" href="/customer/add" id="btnAdd" tabindex="1" >
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <i class="fas fa-plus" style="font-size: 20px"></i>&nbsp;&nbsp;
+                Add New
             </a>
         </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+
+        </div>
+        <div class="col" id="topic">
+            <h2 class="text-center">
+
+               Customer List
+
+            </h2>
+        </div>
+        <div class="col"></div>
     </div>
 </div>
 <!--Customers List-->
@@ -37,8 +61,7 @@
     <!--Table view-->
     <div class="col">
         <div class="col" id="customerListPresent" th:if="${not #lists.isEmpty(customers)}">
-            <table class="table table-hover table-striped" id="myTable">
-                <thead>
+            <table class="table table-borderless table-hover table-striped" id="myTable" >                <thead>
                 <tr>
                     <th> Index</th>
                     <th> Name</th>
@@ -50,12 +73,12 @@
                 </thead>
                 <tbody>
                 <tr th:each="customer, rowCount : ${customers}">
-                    <th th:text="${rowCount.count}"></th>
-                    <th th:text="${customer.name}"></th>
-                    <th th:text="${customer.code}"></th>
-                    <th th:text="${customer.mobile}"></th>
-                    <th th:text="${customer.address}"></th>
-                    <th>
+                    <td th:text="${rowCount.count}"></td>
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.code}"></td>
+                    <td th:text="${customer.mobile}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td>
                         <a id="customerView" th:href="${'/customer/' + customer.id}" class="btn btn-primary btn-sm"><i
                                 class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
                         <a id="customerEdit" th:href="${'/customer/edit/' + customer.id}"
@@ -66,7 +89,7 @@
                             <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
                                 class="fa fa-trash" style="font-size: 15px"></i>
                             Delete</a>
-                    </th>
+                    </td>
                 </tr>
                 </tbody>
             </table>
