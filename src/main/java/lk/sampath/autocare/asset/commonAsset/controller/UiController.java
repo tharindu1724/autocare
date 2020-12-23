@@ -1,7 +1,7 @@
 package lk.sampath.autocare.asset.commonAsset.controller;
 
 
-import lk.sampath.autocare.asset.userManagement.service.UserService;
+import lk.sampath.autocare.asset.user.service.UserService;
 import lk.sampath.autocare.util.service.DateTimeAgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

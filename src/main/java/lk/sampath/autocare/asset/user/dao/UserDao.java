@@ -1,8 +1,8 @@
-package lk.sampath.autocare.asset.userManagement.dao;
+package lk.sampath.autocare.asset.user.dao;
 
 
 import lk.sampath.autocare.asset.employee.entity.Employee;
-import lk.sampath.autocare.asset.userManagement.entity.User;
+import lk.sampath.autocare.asset.user.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

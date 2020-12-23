@@ -2,8 +2,8 @@ package lk.sampath.autocare.asset.userManagement.service;
 
 
 import lk.sampath.autocare.asset.userManagement.CustomerUserDetails;
-import lk.sampath.autocare.asset.userManagement.dao.UserDao;
-import lk.sampath.autocare.asset.userManagement.entity.User;
+import lk.sampath.autocare.asset.user.dao.UserDao;
+import lk.sampath.autocare.asset.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -2,9 +2,9 @@ package lk.sampath.autocare.configuration;
 
 
 import lk.sampath.autocare.asset.userManagement.entity.Enum.UserSessionLogStatus;
-import lk.sampath.autocare.asset.userManagement.entity.User;
+import lk.sampath.autocare.asset.user.entity.User;
 import lk.sampath.autocare.asset.userManagement.entity.UserSessionLog;
-import lk.sampath.autocare.asset.userManagement.service.UserService;
+import lk.sampath.autocare.asset.user.service.UserService;
 import lk.sampath.autocare.asset.userManagement.service.UserSessionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

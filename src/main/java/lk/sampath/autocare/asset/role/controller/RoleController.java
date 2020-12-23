@@ -1,8 +1,8 @@
-package lk.sampath.autocare.asset.userManagement.controller;
+package lk.sampath.autocare.asset.role.controller;
 
 
-import lk.sampath.autocare.asset.userManagement.entity.Role;
-import lk.sampath.autocare.asset.userManagement.service.RoleService;
+import lk.sampath.autocare.asset.role.entity.Role;
+import lk.sampath.autocare.asset.role.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

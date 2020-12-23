@@ -1,7 +1,9 @@
-package lk.sampath.autocare.asset.userManagement.entity;
+package lk.sampath.autocare.asset.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lk.sampath.autocare.asset.employee.entity.Employee;
+import lk.sampath.autocare.asset.role.entity.Role;
+import lk.sampath.autocare.asset.userManagement.entity.UserSessionLog;
 import lk.sampath.autocare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,14 +41,14 @@ public class User extends AuditEntity {
     private boolean enabled;
 
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    private List<UserSessionLog> userSessionLogs;
+    private List< UserSessionLog > userSessionLogs;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @Fetch( FetchMode.SUBSELECT)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private List< Role > roles;
 
     /*@ManyToMany(fetch = FetchType.EAGER)
     //@Fetch( FetchMode.SUBSELECT)
