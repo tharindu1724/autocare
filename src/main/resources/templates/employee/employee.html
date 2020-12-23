@@ -8,51 +8,40 @@
 <nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
 
 <!--heading Area-->
-<div class="container-fluid">
-    <div class="row formManagement border-info">
-        <div class="col text-left">
-            <a href="/home" id="btnHome" class="btn">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i class="fa fa-home" style="font-size: 20px"></i>
-                &nbsp;Home&nbsp;
+<div class="container-fluid  form-Border">
+    <div class="row text-center formManagement border-info">
+        <div class="col">
+            <a href="/home" id="btnHome" class="btn btn-outline-info">
+                &nbsp;Back To Home&nbsp;
             </a>
         </div>
-        <div class="col text-right">
-            <a class="btn"  id="btnAdd" href="/employee/add">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <i class="fa fa-plus"></i>
+
+        <div class="col">
+            <a class="btn btn-info" href="/employee/add"><i class="fa fa-plus"></i>
                 &nbsp;Add New</a>
         </div>
 
     </div>
     <div class="row text-center">
-        <div class="col"></div>
-        <div class="col" id="topic">
-            <h2 class="text-center">
-
+        <div class="col">
+            <h4 class="text-info text-center">
+                <strong>
                     Employee Management
-
-            </h2>
+                </strong>
+            </h4>
         </div>
-        <div class="col"></div>
     </div>
 </div>
 <div class="container-fluid formBorder text-center">
-    <div class="row">
+    <div class="col">
         <div class="col" id="employeeListPresent" th:if="${not #lists.isEmpty(employees)}">
-           <table class="table table-borderless table-hover table-striped" id="myTable" >
-                <thead class="thead-light">
+            <table class="table table-hover table-striped" id="myTable">
+                <thead>
                 <tr>
                     <th> Index</th>
                     <th> Image</th>
                     <th> Employee Id</th>
-                    <th> Name</th>
+                    <th> Calling Name</th>
                     <th> Mobile</th>
                     <th> Designation</th>
                     <th> Status</th>
@@ -61,33 +50,32 @@
                 </thead>
                 <tbody>
                 <tr th:each="employee, rowCount : ${employees}">
-                    <td th:text="${rowCount.count}"></td>
-                    <td>
+                    <th th:text="${rowCount.count}"></th>
+                    <th>
                         <div class="image" data-th-if="${employee.fileInfo !=null}" >
                             <img id="img" class="rounded"
                                  style="height:50px; width:50px;border-radius: 1px"
                                  alt="Employee images"
                                  data-th-src="${employee.fileInfo.url}" />
                         </div >
-                    </td>
-                    <td th:text="${employee.code}"></td>
-                    <td th:text="${employee.callingName}"></td>
-                    <td th:text="${employee.mobileOne}"></td>
-                    <td th:text="${employee.designation.designation}"></td>
-                    <td th:text="${employee.employeeStatus.employeeStatus}"></td>
-                    <td>
+                    </th>
+                    <th th:text="${employee.code}"></th>
+                    <th th:text="${employee.callingName}"></th>
+                    <th th:text="${employee.mobileOne}"></th>
+                    <th th:text="${employee.designation.designation}"></th>
+                    <th th:text="${employee.employeeStatus.employeeStatus}"></th>
+                    <th>
                         <a id="employeeView" th:href="${'/employee/' + employee.id}" class="btn btn-outline-secondary btn-sm">&nbsp;View</a>
                         <a id="employeeEdit" th:href="${'/employee/edit/' + employee.id}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>&nbsp;Edit</a>
                         <a id="employeeRemove" th:href="${'/employee/remove/' + employee.id}"
                            th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>
                             Delete</a>
-                    </td>
+                    </th>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-
     <div class="row" th:if="${ #lists.isEmpty(employees)}">
         <div class="col-sm-12">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -108,8 +96,7 @@
         </script>
     </div>
 </div>
-<!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<div  th:replace="~{fragments/footer :: footerFragment}"></div>
 <!--script include-->
 <script th:replace="~{fragments/script :: scriptFragment}"></script>
 
