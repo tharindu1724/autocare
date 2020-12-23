@@ -3,6 +3,7 @@ package lk.sampath.autocare.asset.employee.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.CivilStatus;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.Gender;
+import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.Title;
 import lk.sampath.autocare.asset.commonAsset.model.FileInfo;
 import lk.sampath.autocare.asset.employee.entity.enums.Designation;
@@ -70,15 +71,18 @@ public class Employee extends AuditEntity {
     @Enumerated( EnumType.STRING )
     private EmployeeStatus employeeStatus;
 
+    @Enumerated(EnumType.STRING)
+    private LiveDead liveDead;
+
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateOfBirth;
 
     @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private LocalDate dateOfAssignment;
 
+
     @Transient
     private MultipartFile file;
-
 
     @Transient
     private FileInfo fileInfo;
