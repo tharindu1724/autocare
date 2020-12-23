@@ -5,6 +5,7 @@ import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.serviceType.entity.ServiceType;
 import lk.sampath.autocare.asset.serviceType.service.ServiceTypeService;
 import lk.sampath.autocare.asset.serviceTypeParameter.service.ServiceTypeParameterService;
+import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,7 @@ public class ServiceTypeController {
     private String commonThing(Model model, Boolean booleanValue, ServiceType serviceType) {
         model.addAttribute("addStatus", booleanValue);
         model.addAttribute("serviceType", serviceType);
+        model.addAttribute("vehicleModels", VehicleModel.values());
         model.addAttribute("serviceTypeParameters", serviceTypeParameterService.findAll() .stream()
             .filter(x -> LiveDead.ACTIVE.equals(x.getLiveDead()))
             .collect(Collectors.toList()));
