@@ -3,6 +3,7 @@ package lk.sampath.autocare.asset.serviceTypeParameter.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.serviceType.entity.ServiceType;
+import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import lk.sampath.autocare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +28,9 @@ public class ServiceTypeParameter extends AuditEntity {
     private String name;
 
     private BigDecimal price;
+
+    @Enumerated(EnumType.STRING)
+    private VehicleModel vehicleModel;
 
     @Enumerated( EnumType.STRING)
     private LiveDead liveDead;
