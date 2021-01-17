@@ -6,7 +6,7 @@
 
 </head>
 <body id="loginBack">
-<link th:href="@{/css/myCss.css}" media="all" rel="stylesheet" type="text/css"/>
+<link  data-th-href="@{/css/myCss.css}" media="all" rel="stylesheet" type="text/css"/>
 <div class="col full-height " id="loginPage" align="center">
     <div class="col-8 col-sm-4 form-box ui-widget-content formBackground " id="draggable">
         <form th:action="${'/login'}" method="post">
@@ -38,11 +38,11 @@
                 </div>
 
             </fieldset>
-            <div class="container-fluid " th:if="${param.error}">
+            <div class="container-fluid "  data-th-if="${param.error}">
                 <p class="bg-white text-capitalize text-danger text-lg-center">Invalid username or password. </p>
             </div>
             <div class="container-fluid ">
-                <p id="errorMessage" th:text="${err}" class="bg-white text-capitalize text-danger text-lg-center"></p>
+                <p id="errorMessage"  data-th-text="${err}" class="bg-white text-capitalize text-danger text-lg-center"></p>
             </div>
         </form>
     </div>

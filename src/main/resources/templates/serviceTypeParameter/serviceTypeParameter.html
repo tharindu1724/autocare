@@ -38,7 +38,7 @@
                                     <div class="card-body">
                                         <h4>Secondary Header </h4>
                                         <!--if not empty list-->
-                                        <div class="container-fluid" id="serviceTypeParameterListTable" th:if="${not #lists.isEmpty(serviceTypeParameters)}">
+                                        <div class="container-fluid" id="serviceTypeParameterListTable"  data-th-if="${not #lists.isEmpty(serviceTypeParameters)}">
                                             <table class="table table-hover table-striped" id="myTable">
                                                 <thead class="thead-inverse">
                                                 <tr>
@@ -49,8 +49,8 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr th:each="serviceTypeParameter, rowCount : ${serviceTypeParameters}" scope="row">
-                                                    <th th:text="${rowCount.count}"></th>
-                                                    <th th:text="${serviceTypeParameter.name}"></th>
+                                                    <th  data-th-text="${rowCount.count}"></th>
+                                                    <th  data-th-text="${serviceTypeParameter.name}"></th>
 
                                                     <th>
                                                         <a class="btn btn-primary btn-sm" id="serviceTypeParameterEdit"
@@ -58,7 +58,7 @@
                                                                 class="fa fa-edit"></i>&nbsp;Edit</a>
                                                         <a class="btn btn-danger btn-sm" id="serviceTypeParameterRemove"
                                                            th:href="${'/serviceTypeParameter/delete/' + serviceTypeParameter.id}"
-                                                           th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                                                            data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
                                                            th:onclick="if(!(confirm('Are you want to delete this civilStatus ?'))) return false"
                                                         ><i
                                                                 aria-hidden="true" class="fa fa-trash"></i>
@@ -70,7 +70,7 @@
                                             </table>
                                         </div>
                                         <!--if empty list-->
-                                        <div class="row" id="serviceTypeParameterNotList" th:if="${ #lists.isEmpty(serviceTypeParameters)}">
+                                        <div class="row" id="serviceTypeParameterNotList"  data-th-if="${ #lists.isEmpty(serviceTypeParameters)}">
                                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
                                         <!--Show saved serviceTypeParameter-->
-                                        <div class="row" th:if="${serviceTypeParameterDetail!=null}">
+                                        <div class="row"  data-th-if="${serviceTypeParameterDetail!=null}">
                                             <div class="col-sm-12">
                                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: headerFragment}">
-    <link th:href="@{/css/roleCss.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link  data-th-href="@{/css/roleCss.css}" media="all" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
     <title>Thymeleaf Springboot </title>
 </head>
@@ -43,21 +43,21 @@
     </div>
 </div>
 <div class="container-fluid formBorder">
-    <div class="offset-2 col-8 col-sm-8 col-md-8" id="roleListPresent" th:if="${not #lists.isEmpty(roles)}">
+    <div class="offset-2 col-8 col-sm-8 col-md-8" id="roleListPresent"  data-th-if="${not #lists.isEmpty(roles)}">
         <div class="table-responsive">
             <table class="table table-borderless table-hover table-striped" id="myTable" >
                 <thead class="thead-light">
                 <tr>
                     <th> Index</th>
                     <th> Name</th>
-                    <th th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Modify</th>
+                    <th  data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"> Modify</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="role, rowCount : ${roles}">
-                    <td th:text="${rowCount.count}"></td>
-                    <td th:text="${role.roleName}"></td>
-                    <td th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                    <td  data-th-text="${rowCount.count}"></td>
+                    <td  data-th-text="${role.roleName}"></td>
+                    <td  data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                         <a id="edit" th:href="${'/role/edit/' + role.id}" class="btn btn-primary btn-sm mr-2 p-2">Edit
                         </a>
                         &nbsp;

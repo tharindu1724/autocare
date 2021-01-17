@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: headerFragment}">
-    <link th:href="@{/css/customerCss.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link  data-th-href="@{/css/customerCss.css}" media="all" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
     <title>customer</title>
 </head>
@@ -60,7 +60,7 @@
 <div class="container-fluid bg-primary text-center">
     <!--Table view-->
     <div class="col">
-        <div class="col" id="customerListPresent" th:if="${not #lists.isEmpty(customers)}">
+        <div class="col" id="customerListPresent"  data-th-if="${not #lists.isEmpty(customers)}">
             <table class="table table-borderless table-hover table-striped" id="myTable" >                <thead>
                 <tr>
                     <th> Index</th>
@@ -73,11 +73,11 @@
                 </thead>
                 <tbody>
                 <tr th:each="customer, rowCount : ${customers}">
-                    <td th:text="${rowCount.count}"></td>
-                    <td th:text="${customer.name}"></td>
-                    <td th:text="${customer.code}"></td>
-                    <td th:text="${customer.mobile}"></td>
-                    <td th:text="${customer.address}"></td>
+                    <td  data-th-text="${rowCount.count}"></td>
+                    <td  data-th-text="${customer.name}"></td>
+                    <td  data-th-text="${customer.code}"></td>
+                    <td  data-th-text="${customer.mobile}"></td>
+                    <td  data-th-text="${customer.address}"></td>
                     <td>
                         <a id="customerView" th:href="${'/customer/' + customer.id}" class="btn btn-primary btn-sm"><i
                                 class="fa fa-folder-open" style="font-size: 15px"></i>&nbsp;View</a>
@@ -86,7 +86,7 @@
                                                              style="font-size: 15px"></i>&nbsp;Edit</a>
                         <a id="customerRemove" th:href="${'/customer/delete/' + customer.id}"
                            class="btn btn-danger btn-sm">
-                            <!--th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
+                            <!-- data-th-if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" --> <i
                                 class="fa fa-trash" style="font-size: 15px"></i>
                             Delete</a>
                     </td>
@@ -96,7 +96,7 @@
         </div>
     </div>
     <!--Error-->
-    <div class="row" th:if="${ #lists.isEmpty(customers)}">
+    <div class="row"  data-th-if="${ #lists.isEmpty(customers)}">
         <div class="col-sm-12">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -116,7 +116,7 @@
         </script>
     </div>
     <!--Save customer-->
-    <div class="row" th:if="${customerDetail != null}">
+    <div class="row"  data-th-if="${customerDetail != null}">
         <div class="col-sm-12">
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">

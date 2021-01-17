@@ -7,7 +7,7 @@
 </head >
 <body >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-<link th:href="@{/css/addServiceTypeCss.css}" media="all" rel="stylesheet" type="text/css" />
+<link  data-th-href="@{/css/addServiceTypeCss.css}" media="all" rel="stylesheet" type="text/css" />
 
 <div class="container-fluid  form-Border" id="topicBack" >
   <div class="row text-left " >
@@ -115,7 +115,7 @@
                          th:field="*{price}"
                          required >
                   <p class="text-danger"
-                     th:if="${#fields.hasErrors('price')}"
+                      data-th-if="${#fields.hasErrors('price')}"
                      th:errors="*{price}" >Error Name</p >
                 </div >
               </div >

@@ -17,7 +17,7 @@
     <div class="col" >
       <h4 class="text-light text-center" >
         <strong >
-          <span th:text="${addStatus==true?'New Service Parameter Add':'Update Service Parameter Details'}" ></span >
+          <span  data-th-text="${addStatus==true?'New Service Parameter Add':'Update Service Parameter Details'}" ></span >
         </strong >
       </h4 >
     </div >
@@ -54,7 +54,7 @@
                         <div class="offset-3 col-6" >
                           <!--/* id this comment not visualize */-->
                           <!--Id-->
-                          <div class="form-group row" th:if="${addStatus==true}" >
+                          <div class="form-group row"  data-th-if="${addStatus==true}" >
                             <label for="id" class="col-sm-6 col-form-label " >
                               Id </label >
                             <div class="col-sm-6" >
@@ -72,7 +72,7 @@
                                      th:field="*{name}"
                                      required >
                               <p class="text-danger"
-                                 th:if="${#fields.hasErrors('name')}"
+                                  data-th-if="${#fields.hasErrors('name')}"
                                  th:errors="*{name}" >Error Name</p >
                             </div >
                           </div >
@@ -85,7 +85,7 @@
                                      th:field="*{price}"
                                      required >
                               <p class="text-danger"
-                                 th:if="${#fields.hasErrors('price')}"
+                                  data-th-if="${#fields.hasErrors('price')}"
                                  th:errors="*{price}" >Error Name</p >
                             </div >
                           </div >
@@ -110,7 +110,7 @@
                             <div class="offset-sm-2 col-sm-10" >
                               <button type="submit" class="btn btn-primary" >
                                 <i th:class="${addStatus==false?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
-                                <span id="submit" th:text="${addStatus==false?'Save' : 'Update'}" ></span >
+                                <span id="submit"  data-th-text="${addStatus==false?'Save' : 'Update'}" ></span >
                               </button >
                             </div >
                           </div >
