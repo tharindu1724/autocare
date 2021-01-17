@@ -2,8 +2,8 @@ package lk.sampath.autocare.asset.employee.controller;
 
 
 
-import lk.sampath.autocare.asset.commonAsset.model.Enum.*;
-import lk.sampath.autocare.asset.commonAsset.service.CommonService;
+import lk.sampath.autocare.asset.common_asset.model.Enum.*;
+import lk.sampath.autocare.asset.common_asset.service.CommonService;
 import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.asset.employee.entity.EmployeeFiles;
 import lk.sampath.autocare.asset.employee.entity.enums.Designation;

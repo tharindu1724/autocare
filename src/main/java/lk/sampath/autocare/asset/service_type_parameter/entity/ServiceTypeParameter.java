@@ -1,9 +1,9 @@
-package lk.sampath.autocare.asset.serviceType.entity;
+package lk.sampath.autocare.asset.service_type_parameter.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-
 import lk.sampath.autocare.asset.common_asset.model.Enum.LiveDead;
-import lk.sampath.autocare.asset.service_type_parameter.entity.ServiceTypeParameter;
+import lk.sampath.autocare.asset.serviceType.entity.ServiceType;
+import lk.sampath.autocare.asset.service_type_parameter_vehicle.entity.ServiceTypeParameterVehicle;
 import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import lk.sampath.autocare.util.audit.AuditEntity;
 import lombok.AllArgsConstructor;
@@ -20,8 +20,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonFilter("ServiceType")
-public class ServiceType extends AuditEntity {
+@JsonFilter("ServiceTypeParameter")
+public class ServiceTypeParameter extends AuditEntity {
 
     private String name;
 
@@ -33,10 +33,12 @@ public class ServiceType extends AuditEntity {
     @Enumerated( EnumType.STRING)
     private LiveDead liveDead;
 
+    @OneToMany(mappedBy = "serviceTypeParameter")
+    private List< ServiceTypeParameterVehicle > serviceTypeParameterVehicles;
 
-    @ManyToMany
-    @JoinTable(name = "service_type_service_type_parameter",
-            joinColumns = @JoinColumn(name = "service_type_id"),
-            inverseJoinColumns = @JoinColumn(name = "service_type_parameter_id"))
-    private List< ServiceTypeParameter > serviceTypeParameters;
+    @ManyToMany(mappedBy = "serviceTypeParameters")
+    private List< ServiceType > serviceTypes;
+
+
+
 }

@@ -1,7 +1,7 @@
 package lk.sampath.autocare.asset.vehicle.entity;
 
 import com.fasterxml.jackson.annotation.JsonFilter;
-import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
+import lk.sampath.autocare.asset.common_asset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.customer.entity.Customer;
 import lk.sampath.autocare.asset.service_type_parameter_vehicle.entity.ServiceTypeParameterVehicle;
 import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;

@@ -2,7 +2,7 @@ package lk.sampath.autocare.asset.employee.service;
 
 
 
-import lk.sampath.autocare.asset.commonAsset.model.FileInfo;
+import lk.sampath.autocare.asset.common_asset.model.FileInfo;
 import lk.sampath.autocare.asset.employee.controller.EmployeeController;
 import lk.sampath.autocare.asset.employee.dao.EmployeeFilesDao;
 import lk.sampath.autocare.asset.employee.entity.Employee;

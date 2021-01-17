@@ -1,7 +1,7 @@
 package lk.sampath.autocare.asset.vehicle.controller;
 
 
-import lk.sampath.autocare.asset.commonAsset.model.Enum.LiveDead;
+import lk.sampath.autocare.asset.common_asset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.customer.service.CustomerService;
 import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import lk.sampath.autocare.asset.vehicle.entity.Vehicle;
