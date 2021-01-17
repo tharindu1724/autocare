@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
+<head  data-th-replace="~{fragments/header :: headerFragment}">
     <link  data-th-href="@{/css/serviceTypeCss.css}" media="all" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
     <title>Thymeleaf Springboot </title>
 </head>
 <body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<nav  data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 
 <div class="container-fluid form-Border">
     <div class="row text-center formManagement border-info">
@@ -48,12 +48,12 @@
     </div>
 </div>
 <div class="wrapper"><!-- wrapper start -->
-    <!--<nav th:replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav>&lt;!&ndash; navbar Section &ndash;&gt;
-    <aside th:replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside>--><!-- navbar Section -->
+    <!--<nav  data-th-replace="~{fragments/navbarSection :: navbarSectionFragment}"></nav>&lt;!&ndash; navbar Section &ndash;&gt;
+    <aside  data-th-replace="~{fragments/sidebarSection :: sidebarSectionFragment}"></aside>--><!-- navbar Section -->
     <div class="content-wrapper"><!-- content-wrapper Start -->
-        <!--<section th:replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
+        <!--<section  data-th-replace="~{fragments/contentHeader :: contentHeaderSectionFragment}"></section>
         &lt;!&ndash; Form Header  Path &ndash;&gt;
-        <section th:replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
+        <section  data-th-replace="~{fragments/smallBoxSection :: smallBoxSectionFragment}"></section>-->
         <!-- Small Box Set -->
 
 
@@ -92,7 +92,7 @@
 
 
                                                     <th>
-                                                        <a id="serviceTypeView" class="btn btn-success btn-sm" th:href="${'/serviceType/' + serviceType.id}" ><i
+                                                        <a id="serviceTypeView" class="btn btn-success btn-sm"  data-th-href="${'/serviceType/' + serviceType.id}" ><i
                                                             class="fa fa-folder-open"></i>&nbsp;View</a>
                                                         <a class="btn btn-primary btn-sm" id="serviceTypeEdit"
                                                            data-th-href="${'/serviceType/edit/' + serviceType.id}"><i
@@ -150,8 +150,8 @@
     </div>
 </div>
 </div><!-- content-wrapper end -->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer><!-- footer Section -->
+<div  data-th-replace="~{fragments/footer :: footerFragment}"></div><!-- footer Section -->
 </div><!-- wrapper end -->
-<script th:replace="~{fragments/script :: scriptFragment}"></script><!-- script Fragment -->
+<div  data-th-replace="~{fragments/script :: scriptFragment}"></div><!-- script Fragment -->
 </body>
 </html>

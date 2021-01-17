@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: headerFragment}">
+<head  data-th-replace="~{fragments/header :: headerFragment}">
     <link  data-th-href="@{/css/addVehicleCss.css}" media="all" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8">
     <title>Thymeleaf Springboot </title>
 </head>
 <body>
-<nav th:replace="~{fragments/navBar :: navBarFragment}"></nav>
+<nav  data-th-replace="~{fragments/navBar :: navBarFragment}"></nav>
 <!--Heading Area-->
 <div class="container-fluid form-boder" id="topicBack">
     <div class="row text-center formManagement border-info">
@@ -164,9 +164,9 @@
 </div>
 
 <!--footer include-->
-<footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+<div  data-th-replace="~{fragments/footer :: footerFragment}"></div>
 <!--script include-->
-<script th:replace="~{fragments/script :: scriptFragment}"></script>
+<div  data-th-replace="~{fragments/script :: scriptFragment}"></div>
 
 </body>
 </html>
