@@ -1,12 +1,12 @@
-package lk.sampath.autocare.asset.employee.service;
+package lk.sampath.autocare.asset.employee_file.service;
 
 
 
 import lk.sampath.autocare.asset.common_asset.model.FileInfo;
 import lk.sampath.autocare.asset.employee.controller.EmployeeController;
-import lk.sampath.autocare.asset.employee.dao.EmployeeFilesDao;
+import lk.sampath.autocare.asset.employee_file.dao.EmployeeFilesDao;
 import lk.sampath.autocare.asset.employee.entity.Employee;
-import lk.sampath.autocare.asset.employee.entity.EmployeeFiles;
+import lk.sampath.autocare.asset.employee_file.entity.EmployeeFiles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;

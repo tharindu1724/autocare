@@ -1,9 +1,9 @@
-package lk.sampath.autocare.asset.employee.dao;
+package lk.sampath.autocare.asset.employee_file.dao;
 
 
 
 import lk.sampath.autocare.asset.employee.entity.Employee;
-import lk.sampath.autocare.asset.employee.entity.EmployeeFiles;
+import lk.sampath.autocare.asset.employee_file.entity.EmployeeFiles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
