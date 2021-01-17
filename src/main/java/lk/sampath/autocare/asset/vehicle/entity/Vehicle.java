@@ -21,7 +21,7 @@ import java.util.List;
 public class Vehicle extends AuditEntity {
 
     @Column(unique = true)
-    private String number; //wp NA 09238
+    private String number; //NA09238
 
     @Column(unique = true, nullable = false)
     private String registrationNumber;// nn09089
