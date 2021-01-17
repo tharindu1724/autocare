@@ -42,7 +42,7 @@ public class Vehicle extends AuditEntity {
     @Enumerated(EnumType.STRING)
     private VehicleModel vehicleModel;//van car or ...
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Customer customer;
 
     @OneToMany(mappedBy = "vehicle")

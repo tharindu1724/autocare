@@ -49,4 +49,8 @@ public class VehicleService implements AbstractService< Vehicle, Integer> {
         Example<Vehicle> vehicleExample = Example.of(vehicle, matcher);
         return vehicleDao.findAll(vehicleExample);
     }
+
+  public Vehicle findByNumber(String number) {
+  return vehicleDao.findByNumber(number);
+    }
 }
