@@ -8,6 +8,8 @@ import lk.sampath.autocare.asset.common_asset.model.Enum.LiveDead;
 import lk.sampath.autocare.asset.customer.service.CustomerService;
 import lk.sampath.autocare.asset.employee.entity.Employee;
 import lk.sampath.autocare.asset.employee.entity.enums.Designation;
+import lk.sampath.autocare.asset.service_type_parameter_vehicle.entity.ServiceTypeParameterVehicle;
+import lk.sampath.autocare.asset.user.entity.User;
 import lk.sampath.autocare.asset.vehicle.entity.Enum.VehicleModel;
 import lk.sampath.autocare.asset.vehicle.entity.Vehicle;
 import lk.sampath.autocare.asset.vehicle.service.VehicleService;
