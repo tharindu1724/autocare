@@ -7,7 +7,6 @@
 </head >
 <body >
 <nav data-th-replace="~{fragments/navBar :: navBarFragment}" ></nav >
-<link data-th-href="@{/css/addServiceTypeCss.css}" media="all" rel="stylesheet" type="text/css" />
 
 <div class="container-fluid  form-Border" id="topicBack" >
   <div class="row text-left " >
@@ -137,203 +136,105 @@
     </div >
   </div >
   <!--inspection area-->
-  <div class="row" data-th-if="${!vehicleSearch}" >
-    <div id="accordianId" role="tablist" aria-multiselectable="true" >
-      <div class="card" >
-        <div class="card-header" role="tab" id="section1HeaderId" >
-          <h5 class="mb-0" >
-            <a data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true"
-               aria-controls="section1ContentId" >
-              Customer Details
-            </a >
-          </h5 >
-        </div >
-        <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId" >
-          <div class="card-body" >
-            <div data-th-replace="~{customer/customer-detail :: customerDetailsFragment}" ></div >
+  <div class="container" data-th-if="${!vehicleSearch}" >
+    <div class="form-row" >
+      <div class="container" >
+        <div id="accordianId" role="tablist" aria-multiselectable="true" >
+          <div class="card" >
+            <div class="card-header" role="tab" id="section1HeaderId" >
+              <h5 class="mb-0" >
+                <a data-toggle="collapse" data-parent="#accordianId" href="#section1ContentId" aria-expanded="true"
+                   aria-controls="section1ContentId" >
+                  Customer Details
+                </a >
+              </h5 >
+            </div >
+            <div id="section1ContentId" class="collapse in" role="tabpanel" aria-labelledby="section1HeaderId" >
+              <div class="card-body" >
+                <div data-th-replace="~{customer/customer-detail :: customerDetailsFragment}" ></div >
+              </div >
+            </div >
           </div >
-        </div >
-      </div >
-      <div class="card" >
-        <div class="card-header" role="tab" id="section2HeaderId" >
-          <h5 class="mb-0" >
-            <a data-toggle="collapse" data-parent="#accordianId" href="#section2ContentId" aria-expanded="true"
-               aria-controls="section2ContentId" >
-              Vehicle Details
-            </a >
-          </h5 >
-        </div >
-        <div id="section2ContentId" class="collapse in" role="tabpanel" aria-labelledby="section2HeaderId" >
-          <div class="card-body" >
-            <div data-th-replace="~{vehicle/vehicle-details :: vehicleDetailsFragment}" ></div >
+          <div class="card" >
+            <div class="card-header" role="tab" id="section2HeaderId" >
+              <h5 class="mb-0" >
+                <a data-toggle="collapse" data-parent="#accordianId" href="#section2ContentId" aria-expanded="true"
+                   aria-controls="section2ContentId" >
+                  Vehicle Details
+                </a >
+              </h5 >
+            </div >
+            <div id="section2ContentId" class="collapse in" role="tabpanel" aria-labelledby="section2HeaderId" >
+              <div class="card-body" >
+                <div data-th-replace="~{vehicle/vehicle-detail :: vehicleDetailsFragment}" ></div >
+              </div >
+            </div >
           </div >
         </div >
       </div >
     </div >
-    <form data-th-action="${addStatus==true?'/inspection/save' :'/inspection/update'}"
-          method="post" data-th-object="${serviceTypeParameterVehicle}"
-          class="mt-3" >
-      <div class="offset-3 col-6" >
-        <!--/* id this comment not visualize */-->
-        <!--Id-->
-        <div class="form-group row" data-th-if="${addStatus==false}" >
-          <label for="id" class="col-sm-4 col-form-label " > Id </label >
-          <div class="col-sm-8" >
+    <div class="form-row" >
+      <form data-th-action="${addStatus==true?'/inspection/save' :'/inspection/update'}"
+            method="post" data-th-object="${serviceTypeParameterVehicle}"
+            class="mt-3" >
+        <div class="container" >
+          <!--/* id this comment not visualize */-->
+          <!--Id-->
+          <div class="form-group " data-th-if="${addStatus==false}" >
+            <label for="id" class="col-form-label " > Id </label >
             <input type="text" class="form-control" data-th-field="*{id}"
                    id="id" readonly >
           </div >
-        </div >
-
-        <!--Number-->
-        <!--        <div class="form-group row" >
-                  <label data-th-for="${'number'}" class="col-sm-4 col-form-label " >
-                    Service Name </label >
-                  <div class="col-sm-8" >
-                    <input type="text" class="form-control" data-th-field="*{number}"
-                           required >
-                    <p class="text-danger" data-th-if="${#fields.hasErrors('number')}"
-                       data-th-errors="*{number}" >Error Name</p >
-                  </div >
-                </div >-->
-        <!--Service type-->
-        <!--        <div class="form-row text-right" >
-                  <div class="col-md-4" >
-                    <label class="control-label" for="title" >Service Type Name
-                                                              :</label >
-                  </div >
-                  <div class="col-md-8" >
-                    <select id="title" data-th-field="*{serviceTypeParameters}"
-                            class="form-control"
-                            tabindex="3" required multiple >
-                      <option value="" disabled >Please select</option >
-                      <option
-                            data-th-each="serviceTypeParamter : ${serviceTypeParameters}"
-                            data-th-text="${serviceTypeParamter.name}"
-                            data-th-value="${serviceTypeParamter.id}" ></option >
-                    </select >
-                  </div >
-                </div >-->
-
-        <!--vehicle model list-->
-        <!--        <div class="form-row text-right" >
-                  <label class="col-sm-4 col-form-label " for="vehicleModel" >Vehicle Type
-                                                                              :</label >
-                  <div class="col-md-8" >
-                    <select id="vehicleModel" data-th-field="*{vehicleModel}"
-                            class="form-control"
-                            tabindex="3" required >
-                      <option value="" disabled >Please select</option >
-                      <option
-                            data-th-each="vehicleModel : ${vehicleModels}"
-                            data-th-text="${vehicleModel.vehicleModel}"
-                            data-th-value="${vehicleModel}" ></option >
-                    </select >
-                  </div >
-                </div >-->
-        <!--price-->
-        <!--      <div class="form-group row" >
-                <label data-th-for="${'price'}" class="col-sm-2 col-form-label " >
-                  Price </label >
-                <div class="col-sm-10" >
-                  <input type="text" class="form-control"
-                         data-th-field="*{price}"
-                         required >
-                  <p class="text-danger"
-                     data-th-if="${#fields.hasErrors('price')}"
-                     data-th-errors="*{price}" >Error Name</p >
-                </div >
-              </div >-->
-
-        <div class="form-group row" >
-          <div class="offset-sm-2 col-sm-10" >
-            <button type="submit" class="btn btn-primary" >
-              <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
-              <span
-                    data-th-text="${addStatus==true?'Save' : 'Update'}" ></span >
-            </button >
+          <input type="hidden" data-th-value="${vehicleDetail.id}" >
+          <!--Service type -->
+          <div class="form-group text-right" >
+            <label class="control-label" for="serviceType" >Service Type Name
+                                                            :</label >
+            <select id="serviceType"
+                    class="form-control"
+                    tabindex="3" required multiple >
+              <option value="" disabled >Please select</option >
+              <option
+                    data-th-each="serviceType : ${serviceTypes}"
+                    data-th-text="${serviceType.name}"
+                    data-th-value="${serviceType.id}" ></option >
+            </select >
           </div >
+          <!--Service type parameter-->
+          <div class="form-group text-right" >
+            <label class="control-label" for="title" >Service Type Parameter Name
+                                                      :</label >
+            <select id="title"
+                    class="form-control"
+                    tabindex="3" required multiple >
+              <option value="" disabled >Please select</option >
+              <option
+                    data-th-each="serviceTypeParameter : ${serviceTypeParameters}"
+                    data-th-text="${serviceTypeParameter.name}"
+                    data-th-value="${serviceTypeParameter.id}" ></option >
+            </select >
+          </div >
+          <!--button-->
+          <div class="form-group " >
+            <div class="offset-sm-2 col-sm-10" >
+              <button type="submit" class="btn btn-primary" >
+                <i data-th-class="${addStatus==true?'fa fa-save mr-1':'fa fa-thumbs-up mr-1'}" ></i >
+                <span
+                      data-th-text="${addStatus==true?'Save' : 'Update'}" ></span >
+              </button >
+            </div >
+          </div >
+
         </div >
 
-      </div >
-
-    </form >
+      </form >
+    </div >
   </div >
 </div >
 <!-- footer Section -->
 <div data-th-replace="~{fragments/footer :: footerFragment}" ></div >
 <!-- script Fragment -->
 <div data-th-replace="~{fragments/script :: scriptFragment}" ></div >
-<script data-th-if="${vehicleSearch}" >
-    $("#vehicleSearchButton").addClass('disabled');
-
-    $("#vehicleNumber").bind('keyup', function () {
-        if ($(this).val().length > 5) {
-            $(this).css('background-color', 'green');
-            $("#vehicleSearchButton").removeClass('disabled');
-
-        } else {
-            $(this).css('background-color', 'red');
-        }
-        if ($(this).val().length === 0)
-            $(this).css('background-color', 'white');
-    });
-
-    $("#vehicleSearchButton").bind('click', function () {
-        let vehicleNumberValue = $("#vehicleNumber").val();
-        let finalUrl = $('#vehicleSearchUrl').val() + vehicleNumberValue;
-        console.log(finalUrl);
-        $.ajax({
-            type: 'GET',
-            url: finalUrl,
-            success: function (resp) {
-                showVehicleData(resp)
-                $("#vehicleNumber").val('').css('background-color', 'white');
-            },
-            error: function (err) {
-                console.log(err);
-                swal({
-                    title: `There is no vehicle according to you enter vehicle number ${vehicleNumberValue}`,
-                    icon: "warning",
-                });
-                $("#vehicleNumber").val('').css('background-color', 'white');
-            }
-        });
-    });
-
-    function showVehicleData(resp) {
-        console.log(resp)
-        let html = `<div class="form-group" >
-          <label for="vehicleNumber" >Our Registration Number</label >
-          <input type="text"
-                 class="form-control"  value="${resp.registrationNumber}" required name="" aria-describedby="helpId"
-                 placeholder="XN0996" style="text-transform:uppercase" >
-        </div >
-        <div class="form-group" >
-          <label for="vehicleNumber" >Registration Number</label >
-          <input type="text"
-                 class="form-control"  value="${resp.number}" required name="" aria-describedby="helpId"
-                 placeholder="XN0996" style="text-transform:uppercase" >
-        </div >
-        <div class="form-group" >
-          <label for="vehicleNumber" >Engine Number</label >
-          <input type="text"
-                 class="form-control"  value="${resp.engineNumber}" required name="" aria-describedby="helpId"
-                 placeholder="XN0996" style="text-transform:uppercase" >
-        </div >
-        <div class="form-group" >
-          <label for="vehicleNumber" >Chassis Number</label >
-          <input type="text"
-                 class="form-control" value="${resp.chassisNumber}" required name="" aria-describedby="helpId"
-                 placeholder="XN0996" style="text-transform:uppercase" >
-        </div >
-        <div class="form-group" >
-          <a href="/inspection/vehicle/${resp.id}" >
-            <button type="button" class="btn btn-primary " >Select</button >
-          </a >
-        </div >`;
-        $("#showVehicleData").after(html);
-    }
-</script >
 
 <script >
     $(".alert").alert();

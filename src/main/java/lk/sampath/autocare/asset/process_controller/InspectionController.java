@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping( "inspection" )
+@RequestMapping( "/inspection" )
 public class InspectionController {
   private final VehicleService vehicleService;
   private final CustomerService customerService;
@@ -63,7 +63,7 @@ public class InspectionController {
           .stream()
           .filter(x -> x.getVehicleModel().equals(vehicleDB.getVehicleModel()))
           .collect(Collectors.toList()));
-      model.addAttribute("serviceTypeParameters",serviceTypeParameterService.findAll()
+      model.addAttribute("serviceTypeParameters", serviceTypeParameterService.findAll()
           .stream()
           .filter(x -> x.getVehicleModel().equals(vehicleDB.getVehicleModel()))
           .collect(Collectors.toList()));
@@ -83,7 +83,9 @@ public class InspectionController {
   @GetMapping( "/select/{id}" )
   public String vehicleDetail(@PathVariable( "id" ) Integer id, Model model) {
     Vehicle vehicle = vehicleService.findById(id);
-
+    model.addAttribute("vehicleDetail", vehicle);
+    model.addAttribute("customerDetail", vehicle.getCustomer());
+    model.addAttribute("serviceTypeParameterVehicle", new ServiceTypeParameterVehicle());
     return "inspection/inspectionForm";
   }
 }

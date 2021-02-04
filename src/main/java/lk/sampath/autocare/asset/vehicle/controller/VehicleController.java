@@ -117,7 +117,7 @@ public class VehicleController implements AbstractController< Vehicle, Integer >
 
     @GetMapping( "/view/{id}" )
     public String view(@PathVariable Integer id, Model model) {
-        model.addAttribute("vehicleDetails", vehicleService.findById(id));
+        model.addAttribute("vehicleDetail", vehicleService.findById(id));
         return "vehicle/vehicle-detail";
     }
 
