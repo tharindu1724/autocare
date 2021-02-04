@@ -2,7 +2,7 @@ package lk.sampath_autocare.asset.employee.controller;
 
 
 
-import lk.sampath.autocare.asset.common_asset.model.Enum.*;
+
 import lk.sampath_autocare.asset.common_asset.model.Enum.*;
 import lk.sampath_autocare.asset.common_asset.service.CommonService;
 import lk.sampath_autocare.asset.employee.entity.Employee;
@@ -89,7 +89,6 @@ public class EmployeeController {
       employee.setFileInfo(employeeFilesService.employeeFileDownloadLinks(employee));
       employees.add(employee);
     }
-    System.out.println("dfsdfs "+employees.size());
     model.addAttribute("employees", employees);
     model.addAttribute("contendHeader", "Employee");
     return "employee/employee";
